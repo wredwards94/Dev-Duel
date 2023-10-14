@@ -14,13 +14,11 @@ export class AppComponent {
   async inspectUser(username: string= 'andrew') {
     const data = await this.userService.inspectUser(username);
     console.log(data);
-    console.log("app.component.ts");
   }
 
   async duelUsers(user1: string, user2: string) {
     const data = await this.userService.duelUsers(user1, user2);
     console.log(data);
-    console.log("app.component.ts");
   }
 
 }

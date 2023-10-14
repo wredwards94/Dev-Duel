@@ -1,22 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
-
-interface EmptyUser {
-  username: string,
-  name: string,
-  location: string,
-  bio: string,
-  avatar_url: string,
-  titles: [],
-  'favorite-language': string,
-  'public-repos': number,
-  'total-stars': number,
-  'highest-starred': number,
-  'perfect-repos': number,
-  followers: number,
-  following: number
-}
-
+import EmptyUser from "../model/EmptyUser";
 
 @Component({
   selector: 'app-duel',
@@ -78,8 +62,8 @@ export class DuelComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.duelUsers(this.usernameOne, this.usernameTwo) 
-    .then(data => { 
+    this.userService.duelUsers(this.usernameOne, this.usernameTwo)
+    .then(data => {
       this.users = data as EmptyUser[]
       if(this.users.length == 2) {
         this.user1 = this.users[0]
@@ -89,7 +73,7 @@ export class DuelComponent implements OnInit {
         this.isUserVisible = true
       }
     })
-    .catch(error => { 
+    .catch(error => {
       this.isUserVisible = false
       this.errorMessage = 'One or more user(s) does not exists'
       console.error('One or more user(s) does not exists')

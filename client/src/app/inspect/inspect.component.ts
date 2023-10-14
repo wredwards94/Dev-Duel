@@ -1,21 +1,6 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
-
-interface EmptyUser {
-  username: string,
-  name: string,
-  location: string,
-  bio: string,
-  avatar_url: string,
-  titles: [],
-  'favorite-language': string,
-  'public-repos': number,
-  'total-stars': number,
-  'highest-starred': number,
-  'perfect-repos': number,
-  followers: number,
-  following: number
-}
+import EmptyUser from "../model/EmptyUser";
 
 @Component({
   selector: 'app-inspect',
