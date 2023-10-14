@@ -1,6 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
 
+interface EmptyUser {
+  username: string,
+  name: string,
+  location: string,
+  bio: string,
+  avatar_url: string,
+  titles: [],
+  'favorite-language': string,
+  'public-repos': number,
+  'total-stars': number,
+  'highest-starred': number,
+  'perfect-repos': number,
+  followers: number,
+  following: number
+}
+
+
 @Component({
   selector: 'app-duel',
   templateUrl: './duel.component.html',
@@ -9,6 +26,43 @@ import { UserService } from 'src/user.service';
 export class DuelComponent implements OnInit {
   usernameOne: string = ""
   usernameTwo: string = ""
+
+  users: EmptyUser[] = []
+
+  user1: EmptyUser = {
+    username: '',
+    name: '',
+    location: '',
+    bio: '',
+    avatar_url: '',
+    titles: [],
+    'favorite-language': '',
+    'public-repos': 0,
+    'total-stars': 0,
+    'highest-starred': 0,
+    'perfect-repos': 0,
+    followers: 0,
+    following: 0
+  }
+
+  user2: EmptyUser = {
+    username: '',
+    name: '',
+    location: '',
+    bio: '',
+    avatar_url: '',
+    titles: [],
+    'favorite-language': '',
+    'public-repos': 0,
+    'total-stars': 0,
+    'highest-starred': 0,
+    'perfect-repos': 0,
+    followers: 0,
+    following: 0
+  }
+
+  isUserVisible: boolean = false;
+  errorMessage: string = ''
 
   constructor(private userService: UserService) { }
 
@@ -24,6 +78,21 @@ export class DuelComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.duelUsers(this.usernameOne, this.usernameTwo);
+    this.userService.duelUsers(this.usernameOne, this.usernameTwo) 
+    .then(data => { 
+      this.users = data as EmptyUser[]
+      if(this.users.length == 2) {
+        this.user1 = this.users[0]
+        this.user2 = this.users[1]
+        console.log(this.user1)
+        console.log(this.user2)
+        this.isUserVisible = true
+      }
+    })
+    .catch(error => { 
+      this.isUserVisible = false
+      this.errorMessage = 'One or more user(s) does not exists'
+      console.error('One or more user(s) does not exists')
+    })
   }
 }

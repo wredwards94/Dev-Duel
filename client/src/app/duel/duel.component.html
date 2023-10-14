@@ -1,21 +1,68 @@
-<div
-  style="
+<div style="
     display: flex;
     flex-direction: column;
     align-items: center;
     margin-top: 20vh;
-  "
->
+  ">
   <div style="display: flex; flex-direction: row">
-    <app-text-input
-      (usernameChange)="receiveUsernameOne($event)"
-    ></app-text-input>
+    <app-text-input (usernameChange)="receiveUsernameOne($event)"></app-text-input>
     <p style="margin: 2vh 20px">VS</p>
-    <app-text-input
-      (usernameChange)="receiveUsernameTwo($event)"
-    ></app-text-input>
+    <app-text-input (usernameChange)="receiveUsernameTwo($event)"></app-text-input>
   </div>
   <br />
   <br />
   <button class="submit-button" (click)="onSubmit()">Duel</button>
 </div>
+
+
+<ng-container *ngIf="users.length === 2 && isUserVisible">
+  <div class="winner card" *ngIf="user1['public-repos'] > user2['public-repos']">{{ user1.username}} is the winner! {{
+    user1.username}} has more public repos.</div>
+  <div class="winner card" *ngIf="user2['public-repos'] > user1['public-repos']">{{ user2.username}} is the winner! {{
+    user2.username}} has more public repos.</div>
+    <div class="winner card" *ngIf="user2['public-repos'] === user1['public-repos']">Well well well...looks like we have a tie!</div>
+  <div class="cards" style="width: 20rem;">
+    <div id="user-card">
+      <img class="card-img-top github" *ngIf="user1" src="{{user1.avatar_url}}">
+      <p *ngIf="user1">{{ user1.bio }}</p>
+      <div class="card-body">
+        <h3 *ngIf="user1">username: {{ user1.username }}</h3>
+        <h3 *ngIf="user1">name: {{ user1.name }}</h3>
+        <h3 *ngIf="user1">location: {{ user1.location }}</h3>
+        <h3 *ngIf="user1">title: {{ user1.titles }}</h3>
+        <h3 *ngIf="user1">favorite language: {{ user1['favorite-language'] }}</h3>
+        <h3 *ngIf="user1"># of public repos: {{ user1['public-repos'] }}</h3>
+        <h3 *ngIf="user1">total stars: {{ user1['total-stars'] }}</h3>
+        <h3 *ngIf="user1">highest starred: {{ user1['highest-starred'] }}</h3>
+        <h3 *ngIf="user1">perfect repos: {{ user1['perfect-repos'] }}</h3>
+        <h3 *ngIf="user1">followers: {{ user1.followers }}</h3>
+        <h3 *ngIf="user1">following: {{ user1.following }}</h3>
+      </div>
+    </div>
+    <div id="user-card">
+      <img class="card-img-top github" *ngIf="user2" src="{{user2.avatar_url}}">
+      <p *ngIf="user2">{{ user2.bio }}</p>
+      <div class="card-body">
+        <h3 *ngIf="user2">username: {{ user2.username }}</h3>
+        <h3 *ngIf="user2">name: {{ user2.name }}</h3>
+        <h3 *ngIf="user2">location: {{ user2.location }}</h3>
+        <h3 *ngIf="user2">title: {{ user2.titles }}</h3>
+        <h3 *ngIf="user2">favorite language: {{ user2['favorite-language'] }}</h3>
+        <h3 *ngIf="user2"># of public repos: {{ user2['public-repos'] }}</h3>
+        <h3 *ngIf="user2">total stars: {{ user2['total-stars'] }}</h3>
+        <h3 *ngIf="user2">highest starred: {{ user2['highest-starred'] }}</h3>
+        <h3 *ngIf="user2">perfect repos: {{ user2['perfect-repos'] }}</h3>
+        <h3 *ngIf="user2">followers: {{ user2.followers }}</h3>
+        <h3 *ngIf="user2">following: {{ user2.following }}</h3>
+      </div>
+    </div>
+  </div>
+</ng-container>
+
+<ng-container *ngIf="errorMessage && !isUserVisible">
+  <div id="error" class="card" style="width: 18rem;">
+    <div class="card-body">
+      <p>{{ errorMessage }}</p>
+    </div>
+  </div>
+</ng-container>

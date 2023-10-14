@@ -14,12 +14,14 @@ export class UserService {
   async inspectUser(username = 'andrew') {
     let data = await this.http.get(inspectUserUrl + username).toPromise();
     console.log(data);
+    console.log("user.service.ts");
     return data;
   }
 
   async duelUsers(user1 = 'fabpot', user2 = 'andrew') {
     let data = await this.http.get(duelUsersUrl + `username=${user1}&username=${user2}`).toPromise();
     console.log(data);
+    console.log("user.service.ts");
     return data;
   }
 

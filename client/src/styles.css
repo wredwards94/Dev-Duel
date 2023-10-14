@@ -1,1 +1,14 @@
-/* You can add global styles to this file, and also import other style files */
+#error {
+    border: #000000 solid 1px;
+    border-radius: 15px;
+    font-size: large;
+    resize: both;
+    margin: auto;
+    text-align: center;
+  }
+
+  .github {
+    width: 118px;
+    height: 118px;
+    resize: both;
+  }

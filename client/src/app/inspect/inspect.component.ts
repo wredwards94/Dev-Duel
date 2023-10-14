@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
 
 @Component({
@@ -9,9 +9,11 @@ import { UserService } from 'src/user.service';
 export class InspectComponent implements OnInit {
 
   username: string = ""
+  userData: any
+  errorMessage: string = ''
+  isUserVisible: boolean = false;
 
-
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService, private renderer: Renderer2, private el: ElementRef) { }
 
   ngOnInit(): void {
   }
@@ -21,9 +23,14 @@ export class InspectComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.inspectUser(this.username);
+    this.userService.inspectUser(this.username)
+    .then(data => {
+      this.userData = data
+      this.isUserVisible = true
+    })
+    .catch(error => {
+      this.isUserVisible = false
+      this.errorMessage = "this user was not found "
+    });
   }
-
-
-
 }
