@@ -1,13 +1,23 @@
-<nav
-  style="
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    color: blueviolet;
-    border-bottom: 3px solid black;
-  "
->
-  <a routerLink="/"><h1 class="link"><--Dev Duel--></h1></a>
-  <a routerLink="/inspect"><h1 class="link">Inspect</h1></a>
-  <a routerLink="/duel"><h1 class="link">Duel</h1></a>
+<nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color: #e3f2fd;">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/">
+      <img src="assets/mark-github.svg" alt="Logo" width="30" height="24" class="d-inline-block align-text-top">
+      Dev Duel</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/inspect">Inspect</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" routerLink="/duel">Duel</a>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>

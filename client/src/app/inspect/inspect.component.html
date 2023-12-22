@@ -5,35 +5,99 @@
     margin-top: 20vh;
   ">
   <app-text-input (usernameChange)="receiveUsername($event)"></app-text-input>
-  <br />
-  <br />
+  <br/>
+  <br/>
   <button class="submit-button" (click)="onSubmit()">Inspect</button>
 </div>
 
-<ng-container *ngIf="userData && isUserVisible">
-  <div id="user-card" class="card" style="width: 18rem;">
-    <img class="card-img-top github" *ngIf="userData" src="{{userData.avatar_url}}" alt="Card image cap">
-    <p *ngIf="userData">{{ userData.bio }}</p>
-    <div class="card-body">
-      <h3 *ngIf="userData">username: {{ userData.username }}</h3>
-      <h3 *ngIf="userData">name: {{ userData.name }}</h3>
-      <h3 *ngIf="userData">location: {{ userData.location }}</h3>
-      <h3 *ngIf="userData">title: {{ userData.titles }}</h3>
-      <h3 *ngIf="userData">favorite language: {{ userData['favorite-language'] }}</h3>
-      <h3 *ngIf="userData"># of public repos: {{ userData['public-repos'] }}</h3>
-      <h3 *ngIf="userData">total stars: {{ userData['total-stars'] }}</h3>
-      <h3 *ngIf="userData">highest starred: {{ userData['highest-starred'] }}</h3>
-      <h3 *ngIf="userData">perfect repos: {{ userData['perfect-repos'] }}</h3>
-      <h3 *ngIf="userData">followers: {{ userData.followers }}</h3>
-      <h3 *ngIf="userData">following: {{ userData.following }}</h3>
+<!--<ng-container *ngIf="userData && isUserVisible">-->
+<!--  <div id="user-card" class="card" style="width: 18rem;">-->
+<!--    <img class="card-img-top github" *ngIf="userData" src="{{userData.avatar_url}}" alt="Card image cap">-->
+<!--    <p *ngIf="userData">{{ userData.bio }}</p>-->
+<!--    <div class="card-body">-->
+<!--      <h3 *ngIf="userData">username: {{ userData.username }}</h3>-->
+<!--      <h3 *ngIf="userData">name: {{ userData.name }}</h3>-->
+<!--      <h3 *ngIf="userData">location: {{ userData.location }}</h3>-->
+<!--      <h3 *ngIf="userData">title: {{ userData.titles }}</h3>-->
+<!--      <h3 *ngIf="userData">favorite language: {{ userData['favorite-language'] }}</h3>-->
+<!--      <h3 *ngIf="userData"># of public repos: {{ userData['public-repos'] }}</h3>-->
+<!--      <h3 *ngIf="userData">total stars: {{ userData['total-stars'] }}</h3>-->
+<!--      <h3 *ngIf="userData">highest starred: {{ userData['highest-starred'] }}</h3>-->
+<!--      <h3 *ngIf="userData">perfect repos: {{ userData['perfect-repos'] }}</h3>-->
+<!--      <h3 *ngIf="userData">followers: {{ userData.followers }}</h3>-->
+<!--      <h3 *ngIf="userData">following: {{ userData.following }}</h3>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-container>-->
+
+<!--<ng-container *ngIf="errorMessage && !isUserVisible">-->
+<!--  <div id="error" class="card container" style="width: 18rem;">-->
+<!--    <div class="card-body">-->
+<!--      <p>{{ errorMessage }}</p>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</ng-container>-->
+
+<ng-container *ngIf="isUserVisible">
+  <div class="card mb-3" style="max-width: 600px; display: flex; flex-direction: row; margin: auto;">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <img src="{{userData.avatar_url}}" class="img-fluid rounded-start object-fit-fill border rounded" alt="">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">{{ userData.name }}</h3>
+          <h5 class="card-text">{{ userData.bio }}</h5>
+          <p>Location: {{ userData.location }}</p>
+          <p>Title: {{ userData.titles }}</p>
+          <p>Favorite language: {{ userData['favorite-language'] }}</p>
+          <p># of public repos: {{ userData['public-repos'] }}</p>
+          <p>Total stars: {{ userData['total-stars'] }}</p>
+          <p>Highest starred: {{ userData['highest-starred'] }}</p>
+          <p>Perfect repos: {{ userData['perfect-repos'] }}</p>
+          <p>Followers: {{ userData.followers }}</p>
+          <p>Following: {{ userData.following }}</p>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
 
-<ng-container *ngIf="errorMessage && !isUserVisible">
-  <div id="error" class="card container" style="width: 18rem;">
-    <div class="card-body">
-      <p>{{ errorMessage }}</p>
+<ng-container *ngIf="!isUserVisible">
+<!--  <div class="modal" tabindex="-1">-->
+<!--    <div class="modal-dialog">-->
+<!--      <div class="modal-content">-->
+<!--        <div class="modal-header">-->
+<!--          <h5 class="modal-title">User not Found</h5>-->
+<!--          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>-->
+<!--        </div>-->
+<!--        <div class="modal-body">-->
+<!--          <p>{{ errorMessage }}</p>-->
+<!--        </div>-->
+<!--        <div class="modal-footer">-->
+<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+       aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Understood</button>
+        </div>
+      </div>
     </div>
   </div>
 </ng-container>
+
+

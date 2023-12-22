@@ -20,7 +20,7 @@ import { UserService } from 'src/user.service';
     NavbarComponent,
     LinkButtonComponent,
     HomeComponent,
-    TextInputComponent
+    TextInputComponent,
   ],
   imports: [
     BrowserModule,

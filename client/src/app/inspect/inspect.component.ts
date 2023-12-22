@@ -10,6 +10,8 @@ import EmptyUser from "../model/EmptyUser";
 export class InspectComponent implements OnInit {
 
   username: string = ""
+  errorMessage: string = ''
+  isUserVisible: boolean = false;
   userData: EmptyUser = {
     username: '',
     name: '',
@@ -25,9 +27,6 @@ export class InspectComponent implements OnInit {
     followers: 0,
     following: 0
   }
-
-  errorMessage: string = ''
-  isUserVisible: boolean = false;
 
   constructor(private userService: UserService, private renderer: Renderer2, private el: ElementRef) { }
 
