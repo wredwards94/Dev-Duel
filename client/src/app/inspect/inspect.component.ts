@@ -1,6 +1,9 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
 import EmptyUser from "../model/EmptyUser";
+// import * as bootstrap from '/bootstrap';
+import { Modal } from 'bootstrap';
+import * as bootstrap from 'bootstrap';
 
 @Component({
   selector: 'app-inspect',
@@ -9,8 +12,9 @@ import EmptyUser from "../model/EmptyUser";
 })
 export class InspectComponent implements OnInit {
 
-  username: string = ""
-  errorMessage: string = ''
+  username: string = "";
+  errorMessage: string = '';
+  modalTitle: string = '';
   isUserVisible: boolean = false;
   userData: EmptyUser = {
     username: '',
@@ -40,12 +44,28 @@ export class InspectComponent implements OnInit {
   onSubmit() {
     this.userService.inspectUser(this.username)
     .then(data => {
-      this.userData = data as EmptyUser
-      this.isUserVisible = true
+      this.userData = data as EmptyUser;
+      this.isUserVisible = true;
     })
     .catch(error => {
-      this.isUserVisible = false
-      this.errorMessage = "this user was not found "
+      this.isUserVisible = false;
+      if(this.username === '') {
+        this.modalTitle = 'Username empty';
+        this.errorMessage = 'Username cannot be empty. Please enter a valid username.';
+        this.showModal();
+      }else {
+        this.modalTitle = 'User not found';
+        this.errorMessage = "This user does not exist. Please enter a valid username.";
+        this.showModal();
+      }
     });
+  }
+
+  showModal() {
+    const modal = document.getElementById('staticBackdrop');
+    if (modal) {
+      const bsModal = new bootstrap.Modal(modal);
+      bsModal.show();
+    }
   }
 }

@@ -10,6 +10,8 @@ import EmptyUser from "../model/EmptyUser";
 export class DuelComponent implements OnInit {
   usernameOne: string = ""
   usernameTwo: string = ""
+  userOneAvatar: string = ""
+  userTwoAvatar: string = ""
 
   users: EmptyUser[] = []
 

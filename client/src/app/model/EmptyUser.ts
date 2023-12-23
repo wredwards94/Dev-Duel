@@ -4,7 +4,7 @@ export default interface EmptyUser {
   location: string,
   bio: string,
   avatar_url: string,
-  titles: [],
+  titles: string[],
   'favorite-language': string,
   'public-repos': number,
   'total-stars': number,

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import {RouterOutlet} from "@angular/router";
+import {slider} from "../../route-animations";
 
 @Component({
   selector: 'app-navbar',
@@ -11,5 +13,4 @@ export class NavbarComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
 }
