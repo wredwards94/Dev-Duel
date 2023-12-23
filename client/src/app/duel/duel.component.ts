@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
 import EmptyUser from "../model/EmptyUser";
+import * as bootstrap from "bootstrap";
 
 @Component({
   selector: 'app-duel',
@@ -10,10 +11,9 @@ import EmptyUser from "../model/EmptyUser";
 export class DuelComponent implements OnInit {
   usernameOne: string = ""
   usernameTwo: string = ""
-  userOneAvatar: string = ""
-  userTwoAvatar: string = ""
-
   users: EmptyUser[] = []
+  choices: string[] = ['titles', 'public repos', 'total stars',
+    'highest starred', 'perfect repos', 'following', 'followers']
 
   user1: EmptyUser = {
     username: '',
@@ -49,6 +49,7 @@ export class DuelComponent implements OnInit {
 
   isUserVisible: boolean = false;
   errorMessage: string = ''
+  modalTitle: string = ''
 
   constructor(private userService: UserService) { }
 
@@ -70,15 +71,22 @@ export class DuelComponent implements OnInit {
       if(this.users.length == 2) {
         this.user1 = this.users[0]
         this.user2 = this.users[1]
-        console.log(this.user1)
-        console.log(this.user2)
         this.isUserVisible = true
       }
     })
     .catch(error => {
       this.isUserVisible = false
-      this.errorMessage = 'One or more user(s) does not exists'
-      console.error('One or more user(s) does not exists')
+        this.modalTitle = 'User(s) not found';
+        this.errorMessage = "One or more user(s) does not exist. Please enter valid username(s).";
+        this.showModal();
     })
+  }
+
+  showModal() {
+    const modal = document.getElementById('staticBackdrop');
+    if (modal) {
+      const bsModal = new bootstrap.Modal(modal);
+      bsModal.show();
+    }
   }
 }

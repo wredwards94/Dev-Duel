@@ -1,8 +1,6 @@
 import { Component, Renderer2, ElementRef, OnInit } from '@angular/core';
 import { UserService } from 'src/user.service';
 import EmptyUser from "../model/EmptyUser";
-// import * as bootstrap from '/bootstrap';
-import { Modal } from 'bootstrap';
 import * as bootstrap from 'bootstrap';
 
 @Component({
@@ -48,16 +46,9 @@ export class InspectComponent implements OnInit {
       this.isUserVisible = true;
     })
     .catch(error => {
-      this.isUserVisible = false;
-      if(this.username === '') {
-        this.modalTitle = 'Username empty';
-        this.errorMessage = 'Username cannot be empty. Please enter a valid username.';
-        this.showModal();
-      }else {
         this.modalTitle = 'User not found';
         this.errorMessage = "This user does not exist. Please enter a valid username.";
         this.showModal();
-      }
     });
   }
 

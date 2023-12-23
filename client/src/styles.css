@@ -13,6 +13,13 @@
 /*    resize: both;*/
 /*  }*/
 
+.user-input {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 15vh;
+}
+
 .link-button{
   font-family: 'PT Sans', sans-serif;
   font-size: xx-large;

@@ -2,68 +2,46 @@
   <app-text-input (usernameChange)="receiveUsername($event)"></app-text-input>
   <br/>
   <br/>
-  <button type="button" class="btn btn-secondary btn-lg link-button" (click)="onSubmit()">Inspect</button>
+  <button type="button" class="btn btn-secondary btn-lg link-button" [disabled]="!username" (click)="onSubmit()">Inspect</button>
 </div>
 
-<!--<ng-container *ngIf="username === ''">-->
-<!--  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"-->
-<!--       aria-labelledby="staticBackdropLabel" aria-hidden="true">-->
-<!--    <div class="modal-dialog modal-dialog-centered">-->
-<!--      <div class="modal-content">-->
-<!--        <div class="modal-header">-->
-<!--          <h1 class="modal-title fs-5" id="staticBackdropLabel">Username empty</h1>-->
-<!--        </div>-->
-<!--        <div class="modal-body">-->
-<!--          <p>{{ errorMessage }}</p>-->
-<!--        </div>-->
-<!--        <div class="modal-footer">-->
-<!--          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>-->
-<!--        </div>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</ng-container>-->
+<div class="flip-card position-absolute top-50 start-50 translate-middle" *ngIf="isUserVisible">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <img src="{{userData.avatar_url}}" alt="Avatar" style="border-radius: 15px; width:500px;height:500px;">
+    </div>
+    <div class="flip-card-back">
+      <br/>
+      <br/>
+      <h1>{{ userData.name }}</h1>
+      <h4 class="card-text">{{ userData.bio }}</h4>
+      <h5>Location: {{ userData.location }}</h5>
+      <h5>Title: {{ userData.titles }}</h5>
+      <h5>Favorite language: {{ userData['favorite-language'] }}</h5>
+      <h5># of public repos: {{ userData['public-repos'] }}</h5>
+      <h5>Total stars: {{ userData['total-stars'] }}</h5>
+      <h5>Highest starred: {{ userData['highest-starred'] }}</h5>
+      <h5>Perfect repos: {{ userData['perfect-repos'] }}</h5>
+      <h5>Followers: {{ userData.followers }}</h5>
+      <h5>Following: {{ userData.following }}</h5>
+    </div>
+  </div>
+</div>
 
-<ng-container *ngIf="isUserVisible">
-  <div class="flip-card">
-    <div class="flip-card-inner">
-      <div class="flip-card-front">
-        <img src="{{userData.avatar_url}}" alt="Avatar" style="border-radius: 15px; width:500px;height:500px;">
+<!--Modal for errors-->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ modalTitle }}</h1>
       </div>
-      <div class="flip-card-back">
-        <br/>
-        <br/>
-        <h1>{{ userData.name }}</h1>
-        <h4 class="card-text">{{ userData.bio }}</h4>
-        <h5>Location: {{ userData.location }}</h5>
-        <h5>Title: {{ userData.titles }}</h5>
-        <h5>Favorite language: {{ userData['favorite-language'] }}</h5>
-        <h5># of public repos: {{ userData['public-repos'] }}</h5>
-        <h5>Total stars: {{ userData['total-stars'] }}</h5>
-        <h5>Highest starred: {{ userData['highest-starred'] }}</h5>
-        <h5>Perfect repos: {{ userData['perfect-repos'] }}</h5>
-        <h5>Followers: {{ userData.followers }}</h5>
-        <h5>Following: {{ userData.following }}</h5>
+      <div class="modal-body">
+        <p>{{ errorMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
-</ng-container>
-
-<ng-container>
-  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-       aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ modalTitle }}</h1>
-        </div>
-        <div class="modal-body">
-          <p>{{ errorMessage }}</p>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-container>
+</div>
