@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import { UserService } from 'src/user.service';
 import EmptyUser from "../model/EmptyUser";
 import * as bootstrap from "bootstrap";
@@ -87,6 +87,33 @@ export class DuelComponent implements OnInit {
     if (modal) {
       const bsModal = new bootstrap.Modal(modal);
       bsModal.show();
+    }
+  }
+
+  chooseWinner(choice: any) {
+
+    switch(choice.target.value) {
+      case 'title':
+        console.log('titles')
+        break
+      case 'public repos':
+        console.log('public repos')
+        break
+      case 'total stars':
+        console.log('total stars')
+        break
+      case 'highest starred':
+        console.log('highest starred')
+        break
+      case 'perfect repos':
+        console.log('perfect repos')
+        break
+      case 'following':
+        console.log('following')
+        break
+      case 'followers':
+        console.log('followers')
+        break
     }
   }
 }

@@ -10,10 +10,10 @@
 </div>
 
 <div class="col-md-4">
-  <select class="form-select form-select-lg mb-3" [disabled]="users.length < 2">
-    <option selected>Open this select menu</option>
+  <select class="form-select form-select-lg mb-3" [disabled]="users.length < 2" (change)="chooseWinner($event)">
+    <option selected>Choose a category to see who wins!</option>
     <ng-container *ngFor="let choice of choices">
-      <option>{{ choice }}</option>
+      <option [value]="choice">{{ choice }}</option>
     </ng-container>
   </select>
 </div>
