@@ -6,24 +6,26 @@
   </div>
   <br/>
   <br/>
-  <button class="btn btn-secondary btn-lg link-button" [disabled]="!usernameOne || !usernameTwo" (click)="onSubmit()">Duel</button>
+  <button (click)="onSubmit()" [disabled]="!usernameOne || !usernameTwo" class="btn btn-secondary btn-lg link-button">
+    Duel
+  </button>
 </div>
 
 <div class="col-md-4">
-  <select class="form-select form-select-lg mb-3" [disabled]="users.length < 2" (change)="chooseWinner($event)">
-    <option selected>Choose a category to see who wins!</option>
+  <select (change)="chooseWinner($event)" [disabled]="users.length < 2 && !isUserVisible || showAlert" class="form-select form-select-lg mb-3">
+    <option [hidden]="isUserVisible" selected>Choose a category to see who wins!</option>
     <ng-container *ngFor="let choice of choices">
-      <option [value]="choice">{{ choice }}</option>
+      <option [hidden]="!isUserVisible" [value]="choice">{{ choice }}</option>
     </ng-container>
   </select>
 </div>
 
-<div class="cards">
+<div *ngIf="isUserVisible && !showAlert" class="cards">
   <ng-container *ngFor="let userData of users">
     <div class="flip-card">
       <div class="flip-card-inner">
         <div class="flip-card-front">
-          <img src="{{userData.avatar_url}}" alt="Avatar" style="border-radius: 15px; width:500px;height:500px;">
+          <img alt="Avatar" src="{{userData.avatar_url}}" style="border-radius: 15px; width:500px;height:500px;">
         </div>
         <div class="flip-card-back">
           <br/>
@@ -45,19 +47,24 @@
   </ng-container>
 </div>
 
-<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-     aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ modalTitle }}</h1>
-      </div>
-      <div class="modal-body">
-        <p>{{ errorMessage }}</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-      </div>
-    </div>
+  <div *ngIf="!isUserVisible && showAlert" class="alert alert-danger alert-dismissible fade show" role="alert">
+    <strong>{{ errorMessage }}</strong>
   </div>
-</div>
+
+<!--<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static"-->
+<!--     data-bs-keyboard="false"-->
+<!--     id="staticBackdrop" tabindex="-1">-->
+<!--  <div class="modal-dialog modal-dialog-centered">-->
+<!--    <div class="modal-content">-->
+<!--      <div class="modal-header">-->
+<!--        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ modalTitle }}</h1>-->
+<!--      </div>-->
+<!--      <div class="modal-body">-->
+<!--        <p>{{ errorMessage }}</p>-->
+<!--      </div>-->
+<!--      <div class="modal-footer">-->
+<!--        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>-->
+<!--      </div>-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->
