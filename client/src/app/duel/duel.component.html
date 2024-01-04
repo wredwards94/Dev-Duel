@@ -12,10 +12,10 @@
 </div>
 
 <div class="col-md-4">
-  <select (change)="chooseWinner($event)" [disabled]="users.length < 2 && !isUserVisible || showAlert" class="form-select form-select-lg mb-3">
-    <option [hidden]="isUserVisible" selected>Choose a category to see who wins!</option>
+  <select [hidden]="!isUserVisible" (change)="chooseWinner($event)" [disabled]="users.length < 2 && !isUserVisible || showAlert" class="form-select form-select-lg mb-3">
+    <option selected>Choose a category to see who wins!</option>
     <ng-container *ngFor="let choice of choices">
-      <option [hidden]="!isUserVisible" [value]="choice">{{ choice }}</option>
+      <option [value]="choice">{{ choice }}</option>
     </ng-container>
   </select>
 </div>
@@ -51,20 +51,20 @@
     <strong>{{ errorMessage }}</strong>
   </div>
 
-<!--<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static"-->
-<!--     data-bs-keyboard="false"-->
-<!--     id="staticBackdrop" tabindex="-1">-->
-<!--  <div class="modal-dialog modal-dialog-centered">-->
-<!--    <div class="modal-content">-->
-<!--      <div class="modal-header">-->
-<!--        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ modalTitle }}</h1>-->
-<!--      </div>-->
-<!--      <div class="modal-body">-->
-<!--        <p>{{ errorMessage }}</p>-->
-<!--      </div>-->
-<!--      <div class="modal-footer">-->
-<!--        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+<div aria-hidden="true" aria-labelledby="staticBackdropLabel" class="modal fade" data-bs-backdrop="static"
+     data-bs-keyboard="false"
+     id="staticBackdrop" tabindex="-1">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">{{ modalTitle }}</h1>
+      </div>
+      <div class="modal-body">
+        <p>{{ modalMessage }}</p>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" data-bs-dismiss="modal" type="button">Close</button>
+      </div>
+    </div>
+  </div>
+</div>

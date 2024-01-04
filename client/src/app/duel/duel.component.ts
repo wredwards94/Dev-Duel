@@ -19,7 +19,8 @@ export class DuelComponent implements OnInit {
   isUserVisible: boolean = false
   showAlert: boolean = false
   errorMessage: string = ''
-  // modalTitle: string = 'Winner winner, Chicken dinner!!'
+  modalTitle: string = ''
+  modalMessage: string = ''
 
   user1: EmptyUser = {
     username: '',
@@ -94,64 +95,165 @@ export class DuelComponent implements OnInit {
   }
 
   chooseWinner(choice: any) {
-    let modalTitle: string = ''
     let winMessage: string = ' is the winner!'
     let tieMessage: string = 'Well well well, looks like we have a draw...'
-    let modalMessage: string = ''
 
     switch (choice.target.value) {
       case 'titles':
         if (this.user1.titles.length > this.user2.titles.length) {
           this.winner = this.user1.name
-          modalTitle = 'Winner winner, Chicken dinner!!'
-          modalMessage = winMessage
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
         }
+
         if (this.user2.titles.length > this.user1.titles.length) {
           this.winner = this.user2.name
-          modalTitle = 'Winner winner, Chicken dinner!!'
-          modalMessage = winMessage
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
         }
+
         if (this.user1.titles.length === this.user2.titles.length) {
-          modalTitle = "It's a draw"
-          modalMessage = tieMessage
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
         }
         break
-      case 'public repos':
+
+
+      case "public repos":
         if (this.user1["public-repos"] > this.user2["public-repos"]) {
           this.winner = this.user1.name
-          modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
         }
+
         if (this.user2["public-repos"] > this.user1["public-repos"]) {
           this.winner = this.user2.name
-          modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
         }
-        if (this.user1["public-repos"] === this.user2["public-repos"]) modalTitle = "It's a draw"
+
+        if (this.user1["public-repos"] === this.user2["public-repos"]) {
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
+        }
         break
+
       case 'total stars':
-        if (this.user1["total-stars"] > this.user2["total-stars"]) this.winner = this.user1.name
-        if (this.user2["total-stars"] > this.user1["total-stars"]) this.winner = this.user2.name
-        if (this.user1["total-stars"] === this.user2["total-stars"]) console.log(tieMessage)
+        if (this.user1["total-stars"] > this.user2["total-stars"]) {
+          this.winner = this.user1.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user2["total-stars"] > this.user1["total-stars"]) {
+           this.winner = this.user2.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user1["total-stars"] === this.user2["total-stars"]) {
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
+        }
         break
+
       case 'highest starred':
-        if (this.user1["highest-starred"] > this.user2["highest-starred"]) this.winner = this.user1.name
-        if (this.user2["highest-starred"] > this.user1["highest-starred"]) this.winner = this.user2.name
-        if (this.user1["highest-starred"] === this.user2["highest-starred"]) console.log(tieMessage)
+        if (this.user1["highest-starred"] > this.user2["highest-starred"]) {
+          this.winner = this.user1.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user2["highest-starred"] > this.user1["highest-starred"]) {
+          this.winner = this.user2.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user1["highest-starred"] === this.user2["highest-starred"]) {
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
+        }
         break
+
       case 'perfect repos':
-        if (this.user1["perfect-repos"] > this.user2["perfect-repos"]) this.winner = this.user1.name
-        if (this.user2["perfect-repos"] > this.user1["perfect-repos"]) this.winner = this.user2.name
-        if (this.user1["perfect-repos"] === this.user2["perfect-repos"]) console.log(tieMessage)
+        if (this.user1["perfect-repos"] > this.user2["perfect-repos"]) {
+          this.winner = this.user1.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user2["perfect-repos"] > this.user1["perfect-repos"]) {
+          this.winner = this.user2.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user1["perfect-repos"] === this.user2["perfect-repos"]) {
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
+        }
         break
+
       case 'following':
-        if (this.user1.following > this.user2.following) this.winner = this.user1.name
-        if (this.user2.following > this.user1.following) this.winner = this.user2.name
-        if (this.user1.following === this.user2.following) console.log(tieMessage)
+        if (this.user1.following > this.user2.following) {
+          this.winner = this.user1.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user2.following > this.user1.following) {
+          this.winner = this.user2.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user1.following === this.user2.following) {
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
+        }
         break
+
       case 'followers':
-        if (this.user1.followers > this.user2.followers) this.winner = this.user1.name
-        if (this.user2.followers > this.user1.followers) this.winner = this.user2.name
-        if (this.user1.followers === this.user2.followers) console.log(tieMessage)
+        if (this.user1.followers > this.user2.followers) {
+          this.winner = this.user1.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user2.followers > this.user1.followers) {
+          this.winner = this.user2.name
+          this.modalTitle = 'Winner winner, Chicken dinner!!'
+          this.modalMessage = this.winner + winMessage
+          this.showModal()
+        }
+
+        if (this.user1.followers === this.user2.followers) {
+          this.modalTitle = "It's a draw"
+          this.modalMessage = tieMessage
+          this.showModal()
+        }
         break
+
       default:
         break
     }
